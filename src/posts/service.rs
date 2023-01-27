@@ -9,7 +9,7 @@ use actix_web::{
 };
 use chrono::Local;
 
-const AUTH_KEY: &str = "whentheimpostorissus";
+const AUTH_KEY: &str = env!("TOKEN");
 
 #[get("/posts")]
 async fn get_posts(data: web::Data<AppState>) -> impl Responder {
