@@ -9,7 +9,7 @@ use actix_web::{
 };
 use chrono::Local;
 
-const AUTH_KEY: &str = env!("TOKEN");
+const AUTH_KEY: &str = "whentheimpostorissus";
 
 #[get("/posts")]
 async fn get_posts(data: web::Data<AppState>) -> impl Responder {
@@ -50,13 +50,15 @@ async fn create_post(data: web::Data<AppState>, obj: web::Json<CreatePost>) -> i
     let date = date.format("%d/%m/%Y").to_string();
 
     let entries = &mut *data.posts.lock();
-    let new_id = entries.len() + 1;
+    let highest_id = entries.len() + 1;
+    
     // for i in 0..entries.len() {
     //     if entries[i].id > highest_id {
     //         highest_id = entries[i].id;
     //         break;
     //     }
     // }
+    
 
     let mut description = obj.description.clone();
     description = description
@@ -73,7 +75,7 @@ async fn create_post(data: web::Data<AppState>, obj: web::Json<CreatePost>) -> i
         );
 
     entries.push(Post {
-        id: new_id as i64,
+        id: highest_id as i64,
         date,
         author: obj.author.clone(),
         description,
