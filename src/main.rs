@@ -38,7 +38,7 @@ async fn health_check() -> HttpResponse {
 
 #[actix_web::main]
 async fn main() -> Res<()> {
-    {
+ {
         DB.lock().read().await?;
     }
     
@@ -55,7 +55,7 @@ async fn main() -> Res<()> {
                     .allowed_methods(vec!["GET", "POST"])
                     .allow_any_origin()
                     .allow_any_header()
-                    .max_age(3600)
+                    .block_on_origin_mismatch(false)
             )
             .app_data(app_state.clone())
             .configure(config)
