@@ -9,7 +9,10 @@ use actix_web::{
 };
 use chrono::Local;
 
-const AUTH_KEY: &str = "whentheimpostorissus";
+// Hardcoded, since there isn't any login/register system, which is fine for this
+// type of project. However, in proper projects, such as a chat app, this isn't enough.
+// You need to add actual authorisation and authentication into it.
+const AUTH_KEY: &str = "YOUR KEY HERE";
 
 #[get("/posts")]
 async fn get_posts(data: web::Data<AppState>) -> impl Responder {
