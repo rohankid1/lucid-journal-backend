@@ -4,7 +4,7 @@ This is a simple backend, made in [Rust](https://rust-lang.org) & [Actix Web](ht
 This is part of my project which can be found here:
 https://lucid-journal.vercel.app/
 
-The frontend of the project: [TODO](#)
+The frontend of the project: https://github.com/rohankid1/lucid-journal-frontend
 
 # Building/Running
 To build the source code, make sure to install the Rust language first.
